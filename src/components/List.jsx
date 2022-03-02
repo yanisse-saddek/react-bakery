@@ -9,11 +9,20 @@ export default class List extends React.Component{
             var toReturn = []
             item.map(it=>{
                 console.log(it)
-                toReturn.push(<p>{it.name} {it.price}</p>)
+                toReturn.push(it.name, it.price)
                 isResult = true;
             })
             if(isResult){
-                return <p>{toReturn}</p>                
+                return (
+                    <li className="list-group-item d-flex justify-content-between align-items-start">
+                                    <div className="ms-2 me-auto">
+                                    <div className="fw-bold">{toReturn[0]}</div>
+                                    </div>
+                                    <span className="badge bg-primary rounded-pill">{toReturn[1]}</span>
+                                </li>
+                )
+                
+                            
             }else{
                 return <p>Aucun resultat</p>
             }
