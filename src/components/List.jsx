@@ -1,37 +1,31 @@
 import React from 'react'
 
-var isResult = false
 export default class List extends React.Component{
     constructor(props){
         super(props)
     }
-    getResult = this.props.items.map(item=>{
-            var toReturn = []
-            item.map(it=>{
-                console.log(it)
-                toReturn.push(it.name, it.price)
-                isResult = true;
-            })
-            if(isResult){
-                return (
-                    <li className="list-group-item d-flex justify-content-between align-items-start">
-                                    <div className="ms-2 me-auto">
-                                    <div className="fw-bold">{toReturn[0]}</div>
-                                    </div>
-                                    <span className="badge bg-primary rounded-pill">{toReturn[1]}</span>
-                                </li>
+    getResult = ()=>{
+        var toReturn = []
+        this.props.items.map(item=>{
+                toReturn.push(
+                  <li className="list-group-item d-flex justify-content-between align-items-start">
+                    <div className="ms-2 me-auto">
+                        <div className="fw-bold">{item[0].name}</div>
+                    </div>
+                    <span className="badge bg-primary rounded-pill">{item[0].price}</span>
+                    <span className="badge bg-danger rounded-pill" onClick={()=>{
+                        this.props.remove(item)
+                        }}>x</span>
+                </li>
                 )
-                
-                            
-            }else{
-                return <p>Aucun resultat</p>
-            }
-        })
+            })
+        return toReturn
+        }
     render(){
         return(
             <div>
                 <h1>Total des items</h1>
-                    {isResult? this.getResult: "Aucun resultat"}
+                    {this.getResult()}
             </div>
 
 

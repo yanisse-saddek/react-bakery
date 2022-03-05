@@ -25,7 +25,7 @@ export default class App extends React.Component{
     }
      selectList = ()=>{
       this.setState({
-        activeTab: <List onClick={this.selectAdd} items={this.state.items}/>,
+        activeTab: <List onClick={this.selectAdd} remove={this.removeItem} items={this.state.items}/>,
       })
     }
      selectPay = ()=>{
@@ -39,6 +39,15 @@ export default class App extends React.Component{
       })
     }
 
+    removeItem = (item)=>{
+      var array = this.state.items
+      var index = this.state.items.indexOf(item)
+      array.splice(index, 1)
+      this.setState({
+        items:array,
+        activeTab: <List onClick={this.selectAdd} remove={this.removeItem} items={this.state.items}/>,
+      })
+    }
 
     addItem = (name, price) =>{
       var array = [{name:name,price:price, quantity:1}]
@@ -48,11 +57,10 @@ export default class App extends React.Component{
       this.setState({
         items: actualItems
       })
-      console.log(typeof actualItems)
     }
    
-    addSave = (name, price, quantity)=>{
-      var array = [{name:name, price:price, quantity:quantity}]
+    addSave = (nameget, priceget, quantityget)=>{
+      var array = [{name:nameget, price:priceget, quantity:quantityget}]
       var actualItems = this.state.items
       actualItems.push(array)
 
@@ -71,7 +79,7 @@ export default class App extends React.Component{
           <div className="container">
             <div className="container">
               <Button func={this.addItem} onClick={this.selectAdd}>Add</Button>   
-              <Button items={this.state.items} onClick={this.selectList}>List</Button>   
+              <Button items={this.state.items} remove={this.removeItem} onClick={this.selectList}>List</Button>   
               <Button saveFunction={this.saveFunction} items={this.state.items} onClick={this.selectPay}>Pay</Button>   
               <Button gato={this.state.save} onClick={this.selectSave}>Save</Button>   
               {this.state.activeTab}

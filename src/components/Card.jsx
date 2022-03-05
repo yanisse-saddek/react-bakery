@@ -20,7 +20,7 @@ export default class Card extends React.Component{
         return(
 
             <button >
-                <img height="300px" src={this.state.image} alt="" />
+                <img height="100px" src={this.state.image} alt="" />
             </button>
         )
     }

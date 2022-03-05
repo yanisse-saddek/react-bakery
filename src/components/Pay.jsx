@@ -31,21 +31,16 @@ export default class Pay extends React.Component{
             var newV = {name:name, price:price, quantity: newQuantity, cross:"x"}
             var index= this.state.panier.indexOf(checkArray)
             this.state.panier[index] = newQuantity
-
             this.state.panier.push(newV)
-
             this.setState({
                 panier:this.state.panier,
             })
         }
+        var subTotal = this.state.subtotal + parseInt(price)
 
-        var subTotal = this.state.total += parseInt(price)
         var ecoTax = this.state.panier.length * 0.03
-        var vat = this.state.total*0.20
-        var total = subTotal + ecoTax+ vat
-
-
-        
+        var vat    = subTotal*0.20
+        var total  = subTotal + ecoTax+ vat
 
         this.setState({
             subtotal: subTotal,
@@ -87,7 +82,7 @@ export default class Pay extends React.Component{
                 {this.state.panier.map(item=>{
                     return <p>{item.name} {item.cross} {item.quantity}</p>
                 })}
-                <div className="d-flex  align-items-end flex-column" style={{height:"300px"}}>
+                <div className="d-flex  align-items-end flex-column"    >
                     <h3>SubTotal: {this.state.subtotal.toFixed(2)}$</h3>
                     <h3>VAT: {this.state.vat.toFixed(2)}$</h3>
                     <h3>Eco Tax: {this.state.ecoTax.toFixed(2)}$</h3>
