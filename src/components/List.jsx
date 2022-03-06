@@ -9,14 +9,16 @@ export default class List extends React.Component{
         if(this.props.items.length > 0){
             this.props.items.map(item=>{
                 toReturn.push(
-                  <li className="list-group-item d-flex justify-content-between align-items-start">
+                  <li className="list-group-item d-flex justify-content-between align-items-center">
                     <div className="ms-2 me-auto">
-                        <div className="fw-bold">{item[0].name}</div>
+                        <img height="80PX" width="100px"src={item[0].image}/>
+                        <div style={{textAlign:"center"}}className="fw-bold">{item[0].name}</div>
                     </div>
                     <span className="badge bg-primary rounded-pill">{item[0].price}$</span>
                     <span className="badge bg-danger rounded-pill" onClick={()=>{
                         this.props.remove(item)
                         }}>x</span>
+
                 </li>
                 )
             })
