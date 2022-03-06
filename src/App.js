@@ -1,6 +1,6 @@
 import React, { Children, } from 'react'
+import axios from 'axios'
 import Button from './components/Button'
-
 import Add from './components/Add'
 import List from './components/List'
 import Pay from './components/Pay'
@@ -50,13 +50,19 @@ export default class App extends React.Component{
     }
 
     addItem = (name, price) =>{
-      var array = [{name:name,price:price, quantity:1}]
-      var actualItems = this.state.items
-      actualItems.push(array)
+      var image = []
+        axios(`https://imsea.herokuapp.com/api/1?q=${name}`).then(img=>{
+            var rand = Math.ceil(Math.random() * img.data.results.length)
+            image.push(img.data.results[0])
+            var array = [{name:name,price:price, quantity:1, image:image}]
+            var actualItems = this.state.items
+            actualItems.push(array)
+      
+            this.setState({
+              items: actualItems
+            })
 
-      this.setState({
-        items: actualItems
-      })
+        })
     }
    
     addSave = (nameget, priceget, quantityget)=>{

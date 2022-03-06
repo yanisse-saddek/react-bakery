@@ -6,19 +6,24 @@ export default class List extends React.Component{
     }
     getResult = ()=>{
         var toReturn = []
-        this.props.items.map(item=>{
+        if(this.props.items.length > 0){
+            this.props.items.map(item=>{
                 toReturn.push(
                   <li className="list-group-item d-flex justify-content-between align-items-start">
                     <div className="ms-2 me-auto">
                         <div className="fw-bold">{item[0].name}</div>
                     </div>
-                    <span className="badge bg-primary rounded-pill">{item[0].price}</span>
+                    <span className="badge bg-primary rounded-pill">{item[0].price}$</span>
                     <span className="badge bg-danger rounded-pill" onClick={()=>{
                         this.props.remove(item)
                         }}>x</span>
                 </li>
                 )
             })
+        }else{
+            toReturn.push(<p>Aucun element</p>)
+        }
+
         return toReturn
         }
     render(){

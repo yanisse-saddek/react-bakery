@@ -57,7 +57,7 @@ export default class Pay extends React.Component{
             item.map(getItem=>{
                 toReturn.push(<div onClick={()=>{
                     this.updatePanier(getItem.name, getItem.price, getItem.quantity)
-                }}>                    <Card productName={getItem.name}/>
+                }}>                    <Card product={getItem}/>
                 </div>)
             })
         })
