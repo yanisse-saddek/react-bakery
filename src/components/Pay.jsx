@@ -79,9 +79,28 @@ export default class Pay extends React.Component{
         return(
             <div>
                 <h1>Pay</h1>
-                {this.state.panier.map(item=>{
-                    return <p>{item.name} {item.cross} {item.quantity}</p>
-                })}
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Quantité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {this.state.panier.map(item=>{
+                        if(typeof item !== "number"){
+                            return (
+                                <tr>
+                                    <td>{item.name}</td>
+                                    <td>{item.price}</td>
+                                    <td>{item.cross}{item.quantity}</td>
+                                </tr>
+                            )
+                        }
+                     })}
+                    </tbody>
+                </table>
                 <div className="d-flex  align-items-end flex-column"    >
                     <h3>SubTotal: {this.state.subtotal.toFixed(2)}$</h3>
                     <h3>VAT: {this.state.vat.toFixed(2)}$</h3>

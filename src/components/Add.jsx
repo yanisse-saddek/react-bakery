@@ -33,7 +33,7 @@ export default class Add extends React.Component{
                 </div>
                 <label htmlFor="customRange1" className="form-label">Definir un prix</label>
                 <p>Price: {this.state.price}$</p>
-                <input type="range" className="form-range" min="0" max="10" value={this.state.price} onChange={this.updatePrice}/>
+                <input type="range" className="form-range" min="0" max="100" value={this.state.price} onChange={this.updatePrice}/>
             </div>
 
         )
