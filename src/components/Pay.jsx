@@ -83,8 +83,9 @@ export default class Pay extends React.Component{
                     <thead>
                         <tr>
                         <th scope="col">Objet</th>
-                        <th scope="col">Prix</th>
                         <th scope="col">Quantité</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Prix total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,8 +94,9 @@ export default class Pay extends React.Component{
                             return (
                                 <tr>
                                     <td>{item.name}</td>
-                                    <td>{item.price}</td>
                                     <td>{item.cross}{item.quantity}</td>
+                                    <td>{item.price}$</td>
+                                    <td>{item.quantity*item.price}$</td>
                                 </tr>
                             )
                         }
